@@ -5,6 +5,7 @@ import 'package:flutter_auth/Screens/Transform/transform.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/Services/database.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
+          textTheme: GoogleFonts.solwayTextTheme(Theme.of(context).textTheme),
         ),
         home: Wrapper(),
       ),
