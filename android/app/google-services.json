@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "775652115238",
+    "firebase_url": "https://setup-261914.firebaseio.com",
+    "project_id": "gmail-setup-261914",
+    "storage_bucket": "gmail-setup-261914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775652115238:android:283c172e2a2ed72b0177e7",
+        "android_client_info": {
+          "package_name": "com.example.flutter_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775652115238-cvov3tgm2sgj6op01kv3f8ds84iot7i4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaS4r9YPH170AI9XCAaa1ZOg0EmXkKHrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775652115238-cvov3tgm2sgj6op01kv3f8ds84iot7i4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
