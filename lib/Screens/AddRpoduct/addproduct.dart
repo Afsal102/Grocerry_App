@@ -40,7 +40,7 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Loading() 
+        ? Loading()
         
         : SafeArea(
             child: SingleChildScrollView(
