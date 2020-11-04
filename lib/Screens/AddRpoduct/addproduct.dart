@@ -24,7 +24,7 @@ class _AddProductState extends State<AddProduct> {
   bool loading = false;
   //!using image picker
   Future getimage() async {
-    final image = await piker.getImage(source: ImageSource.camera);
+    final image = await piker.getImage(source: ImageSource.camera,imageQuality: );
 
     setState(() {
       if (image != null) {

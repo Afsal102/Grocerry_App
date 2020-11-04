@@ -1,15 +1,12 @@
 import 'dart:async';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/Models/productmodel.dart';
 import 'package:flutter_auth/Screens/NoResultPage/noresuiltpage.dart';
 
-
 import 'package:flutter_auth/components/rounded_TextFormt_field.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Body extends StatefulWidget {
@@ -166,7 +163,9 @@ class _BodyState extends State<Body> {
                     )
                   : Offstage(offstage: true, child: Text('')),
               noResult == true
-                  ? Text('No Results found',)
+                  ? Text(
+                      'No Results found',
+                    )
                   : Offstage(offstage: true, child: Text('')),
               wttodo
                   ? Container(
@@ -203,4 +202,3 @@ class Debouncer {
     _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }
-

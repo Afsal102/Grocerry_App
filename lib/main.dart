@@ -5,6 +5,7 @@ import 'package:flutter_auth/Screens/Transform/transform.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/Services/database.dart';
 import 'package:flutter_auth/constants.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       
       value: Database().user,
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false, 
         title: 'Flutter Auth',
         theme: ThemeData(
           primaryColor: kPrimaryColor,

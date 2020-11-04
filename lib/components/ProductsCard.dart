@@ -1,4 +1,4 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Models/productmodel.dart';
@@ -72,8 +72,11 @@ class _ProductsState extends State<Products> {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onPressed: () async {
-                        if(await Database().delete(widget.productModel.prodId)==true){
-                          Toast.show('Deleted', context,duration: Toast.LENGTH_LONG);
+                        if (await Database()
+                                .delete(widget.productModel.prodId) ==
+                            true) {
+                          Toast.show('Deleted', context,
+                              duration: Toast.LENGTH_LONG);
                           Navigator.pop(context);
                         }
                       },
@@ -88,9 +91,12 @@ class _ProductsState extends State<Products> {
         ],
         child: Card(
           clipBehavior: Clip.antiAlias,
+          elevation: 4.0,
+          
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 // width: (MediaQuery.of(context).size.width / 2),
@@ -99,23 +105,33 @@ class _ProductsState extends State<Products> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   clipBehavior: Clip.antiAlias,
-                  child: Image.network(
-                    widget.productModel.imageLink,
+                  child: CachedNetworkImage(
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: double.infinity,
+                    imageUrl: widget.productModel.imageLink,
+                    placeholder: (context, url) => new SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 4.0,
+                            valueColor: AlwaysStoppedAnimation(Colors.blue),
+                          ),
+                        )),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
               ),
               SizedBox(
-                width: 13,
+                width: 5,
               ),
               Row(
                 children: [
                   Container(
                     padding: EdgeInsets.all(5.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ProductsText(
                             text: widget.productModel.prodName.toUpperCase(),
@@ -139,12 +155,12 @@ class _ProductsState extends State<Products> {
                   Container(
                     padding: EdgeInsets.all(5.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ProductsText(
                             text: widget.productModel.prodId, fontSize: 13),
                         ProductsText(
-                            text: widget.productModel.uploadDate, fontSize: 13),
+                            text: widget.productModel.uploadDate, fontSize: 10),
                         ProductsText(
                             text: widget.productModel.weight == 'g'
                                 ? 'GRAMS'

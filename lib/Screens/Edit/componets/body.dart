@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
@@ -70,19 +71,18 @@ class _BodyState extends State<Body> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0)),
                               child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 150,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Image.network(
-                                    widget.productModel.imageLink,
-                                    alignment: Alignment.center,
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                  ),
-                                ),
-                              ),
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 150,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: widget.productModel.imageLink,
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      alignment: Alignment.center,
+                                    ),
+                                  )),
                             ),
                           ),
                         ),

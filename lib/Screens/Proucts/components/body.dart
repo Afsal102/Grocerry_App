@@ -16,6 +16,7 @@ class _BodyState extends State<Body> {
     List<ProductModel> data = Provider.of<List<ProductModel>>(context);
     return Container(
       child:   ListView.builder(
+        physics: BouncingScrollPhysics(),
         // scrollDirection: Axis.horizontal,
         itemCount: data == null ? 0 : data.length,
         itemBuilder: (BuildContext context, int index) {
