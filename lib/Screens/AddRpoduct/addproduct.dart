@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Search/components/controllerSerch.dart';
 import 'package:flutter_auth/Services/database.dart';
 import 'package:flutter_auth/components/loading.dart';
 import 'package:flutter_auth/components/rounded_TextFormt_field.dart';
 import 'package:flutter_auth/components/text_Formfield_container.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
 
@@ -24,7 +26,7 @@ class _AddProductState extends State<AddProduct> {
   bool loading = false;
   //!using image picker
   Future getimage() async {
-    final image = await piker.getImage(source: ImageSource.camera,imageQuality: );
+    final image = await piker.getImage(source: ImageSource.camera);
 
     setState(() {
       if (image != null) {
@@ -41,7 +43,6 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return loading
         ? Loading()
-        
         : SafeArea(
             child: SingleChildScrollView(
               child: Container(
@@ -185,7 +186,7 @@ class _AddProductState extends State<AddProduct> {
                                         //         .toString(),
                                         //     dropdownValue,
                                         //     _imagee);
-                                        //     print(nameController.value.text.toString());
+                                        // print(nameController.value.text.toString());
                                         if (await Database().insertData(
                                                 nameController.value.text
                                                     .toString(),
@@ -200,6 +201,9 @@ class _AddProductState extends State<AddProduct> {
                                             loading = false;
                                             _imagee = null;
                                           });
+                                          nameController.clear();
+                                          priceController.clear();
+                                          quantityController.clear();
                                           Toast.show(
                                               'Product added successfully',
                                               context,

@@ -9,6 +9,7 @@ class SearchCpntroller extends GetxController {
   List<ProductModel> searchItems = List<ProductModel>().obs;
   var af = false.obs;
   var hildeAllProds = false.obs;
+  var showSpinkKit = false.obs;
   
   List<ProductModel> get pord => products.value!=null?  products.value.reversed.toList():products.value;
   void showdata(String name) {

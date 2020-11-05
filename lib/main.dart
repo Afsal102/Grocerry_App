@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Transform/transform.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_auth/Services/ConnectivityStatues.dart';
+import 'package:flutter_auth/Services/NetworkProvider.dart';
 import 'package:flutter_auth/Services/database.dart';
 import 'package:flutter_auth/constants.dart';
 
@@ -20,32 +22,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
-      
-      value: Database().user,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false, 
-        title: 'Flutter Auth',
-        theme: ThemeData(
-          primaryColor: kPrimaryColor,
-          scaffoldBackgroundColor: Colors.white,
-          textTheme: GoogleFonts.solwayTextTheme(Theme.of(context).textTheme),
+        value: Database().user,
+        child: MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Flutter Auth',
+    theme: ThemeData(
+      primaryColor: kPrimaryColor,
+      scaffoldBackgroundColor: Colors.white,
+      textTheme: GoogleFonts.solwayTextTheme(Theme.of(context).textTheme),
+    ),
+    home: Wrapper(),
         ),
-        home: Wrapper(),
-      ),
-    );
+      );
   }
 }
 
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user  = Provider.of<User>(context);
-
-    if(user==null){
-      
+    final user = Provider.of<User>(context);
+    if (user == null) {
       return WelcomeScreen();
-    }
-    else{
+    } else {
       print(user.email);
       return Trasnform();
     }

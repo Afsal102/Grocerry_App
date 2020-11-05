@@ -73,7 +73,7 @@ class _ProductsState extends State<Products> {
                       ),
                       onPressed: () async {
                         if (await Database()
-                                .delete(widget.productModel.prodId) ==
+                                .delete(widget.productModel) ==
                             true) {
                           Toast.show('Deleted', context,
                               duration: Toast.LENGTH_LONG);

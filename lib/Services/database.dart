@@ -41,9 +41,34 @@ class Database {
     //!Used realtime database to gennerate psuh id
     String pushKey = dbref.push().key;
     print('$pname $pprice $availableQty $weightt $imageurl');
-    StorageReference reference =
+    Reference reference =
         FirebaseStorage.instance.ref().child('Products/').child(pushKey);
-    await reference.putFile(imageurl).onComplete.then((value) async {
+    // await reference.putFile(imageurl).onComplete.then((value) async {
+    //   String link = await value.ref.getDownloadURL();
+
+    //   ProductModel productModel = new ProductModel(
+    //       prodId: pushKey,
+    //       prodName: pname,
+    //       prodPrice: pprice,
+    //       availableQty: availableQty,
+    //       weight: weightt,
+    //       uploadDate: DateTime.now().toString(),
+    //       imageLink: link);
+
+    //   await firebaseFirestore
+    //       .collection('Products')
+    //       .doc(pushKey)
+    //       .set(productModel.toMap())
+    //       .then((value) {
+    //     print('success');
+    //     data = true;
+    //   }).catchError((onError) {
+    //     print('errror');
+    //   });
+    // }).catchError((onError) {
+    //   print('errror');
+    // });
+    await reference.putFile(imageurl).then((value) async {
       String link = await value.ref.getDownloadURL();
 
       ProductModel productModel = new ProductModel(
@@ -65,8 +90,8 @@ class Database {
       }).catchError((onError) {
         print('errror');
       });
-    }).catchError((onError) {
-      print('errror');
+    }).catchError((onEror) {
+      print('Error');
     });
 
     // print(key);
@@ -92,17 +117,26 @@ class Database {
     return reference.snapshots().map(_listfromSnap);
   }
 
-  Future<bool> delete(final proId) async {
+  Future<bool> delete(ProductModel prodMod) async {
     bool data = false;
-    await FirebaseFirestore.instance
-        .collection('Products')
-        .doc(proId)
+    await FirebaseStorage.instance
+        .refFromURL(prodMod.imageLink)
         .delete()
-        .then((value) {
-      data = true;
+        .then((value) async {
+      await FirebaseFirestore.instance
+          .collection('Products')
+          .doc(prodMod.prodId)
+          .delete()
+          .then((value) {
+        data = true;
+      }).catchError((onError) {
+        data = false;
+      });
     }).catchError((onError) {
+      print('Error');
       data = false;
     });
+
     return data;
   }
 
