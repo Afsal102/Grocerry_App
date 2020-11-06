@@ -6,6 +6,7 @@ import 'package:flutter_auth/Services/database.dart';
 import 'package:flutter_auth/components/loading.dart';
 import 'package:flutter_auth/components/rounded_TextFormt_field.dart';
 import 'package:flutter_auth/components/text_Formfield_container.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
@@ -80,12 +81,16 @@ class _AddProductState extends State<AddProduct> {
                                           borderRadius:
                                               BorderRadius.circular(15.0),
                                           child: _imagee == null
-                                              ? Image.network(
-                                                  "https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                                                  alignment: Alignment.center,
-                                                  fit: BoxFit.cover,
-                                                  width: double.infinity,
-                                                  height: double.infinity,
+                                              ?
+                                              // ? Image.asset(
+                                              //     'assets/login_bottom.png',
+                                              //     alignment: Alignment.center,
+                                              //     fit: BoxFit.cover,
+                                              //     width: double.infinity,
+                                              //     height: double.infinity,
+                                              //   )
+                                              SvgPicture.asset(
+                                                  "assets/icons/login.svg",
                                                 )
                                               : Image.file(
                                                   _imagee,
